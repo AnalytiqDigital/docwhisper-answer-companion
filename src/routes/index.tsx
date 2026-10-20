@@ -62,7 +62,7 @@ function Index() {
     <main className="min-h-screen bg-sun font-sans">
       <div className="mx-auto max-w-3xl px-5 py-14">
         <div className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-accent-foreground" /> Live on +234 813 971 1767
+          <span className="h-2 w-2 animate-pulse rounded-full bg-accent-foreground" /> Live on +234 803 600 0004
         </div>
         <h1 className="mt-4 font-display text-4xl font-bold leading-tight md:text-5xl">
           Your WhatsApp now answers itself.
