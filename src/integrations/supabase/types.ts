@@ -14,7 +14,150 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      knowledge_cache: {
+        Row: {
+          content: string
+          fetched_at: string
+          id: string
+          title: string | null
+        }
+        Insert: {
+          content: string
+          fetched_at?: string
+          id: string
+          title?: string | null
+        }
+        Update: {
+          content?: string
+          fetched_at?: string
+          id?: string
+          title?: string | null
+        }
+        Relationships: []
+      }
+      whatsapp_messages: {
+        Row: {
+          body: string | null
+          contact: string
+          created_at: string
+          delivered_at: string | null
+          direction: string
+          error: Json | null
+          failed_at: string | null
+          id: string
+          msg_type: string | null
+          read_at: string | null
+          reply_to: string | null
+          sending_started_at: string | null
+          sent_at: string | null
+          state: string
+          status_rank: number
+          wa_message_id: string | null
+        }
+        Insert: {
+          body?: string | null
+          contact: string
+          created_at?: string
+          delivered_at?: string | null
+          direction: string
+          error?: Json | null
+          failed_at?: string | null
+          id?: string
+          msg_type?: string | null
+          read_at?: string | null
+          reply_to?: string | null
+          sending_started_at?: string | null
+          sent_at?: string | null
+          state?: string
+          status_rank?: number
+          wa_message_id?: string | null
+        }
+        Update: {
+          body?: string | null
+          contact?: string
+          created_at?: string
+          delivered_at?: string | null
+          direction?: string
+          error?: Json | null
+          failed_at?: string | null
+          id?: string
+          msg_type?: string | null
+          read_at?: string | null
+          reply_to?: string | null
+          sending_started_at?: string | null
+          sent_at?: string | null
+          state?: string
+          status_rank?: number
+          wa_message_id?: string | null
+        }
+        Relationships: []
+      }
+      whatsapp_status_events: {
+        Row: {
+          applied: boolean
+          created_at: string
+          errors: Json | null
+          id: string
+          provider_ts: string | null
+          status: string
+          wa_message_id: string
+        }
+        Insert: {
+          applied?: boolean
+          created_at?: string
+          errors?: Json | null
+          id?: string
+          provider_ts?: string | null
+          status: string
+          wa_message_id: string
+        }
+        Update: {
+          applied?: boolean
+          created_at?: string
+          errors?: Json | null
+          id?: string
+          provider_ts?: string | null
+          status?: string
+          wa_message_id?: string
+        }
+        Relationships: []
+      }
+      whatsapp_webhook_events: {
+        Row: {
+          attempts: number
+          delivery_id: string
+          event: string
+          id: string
+          next_attempt_at: string
+          payload: Json
+          processed_at: string | null
+          processing_error: string | null
+          received_at: string
+        }
+        Insert: {
+          attempts?: number
+          delivery_id: string
+          event: string
+          id?: string
+          next_attempt_at?: string
+          payload: Json
+          processed_at?: string | null
+          processing_error?: string | null
+          received_at?: string
+        }
+        Update: {
+          attempts?: number
+          delivery_id?: string
+          event?: string
+          id?: string
+          next_attempt_at?: string
+          payload?: Json
+          processed_at?: string | null
+          processing_error?: string | null
+          received_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
