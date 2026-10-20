@@ -156,7 +156,8 @@ export async function applyStatuses(waMessageId: string) {
     .select("*")
     .eq("wa_message_id", waMessageId);
   if (e2) throw e2;
-  const patch: Record<string, unknown> = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const patch: Record<string, any> = {};
   let rank = msg.status_rank;
   for (const ev of events ?? []) {
     const col = `${ev.status}_at` as "sent_at" | "delivered_at" | "read_at" | "failed_at";
@@ -164,13 +165,13 @@ export async function applyStatuses(waMessageId: string) {
     const r = RANK[ev.status] ?? 0;
     if (r > rank) {
       rank = r;
-      patch.status_rank = r;
-      patch.state = ev.status;
+      patch["status_rank"] = r;
+      patch["state"] = ev.status;
     }
-    if (ev.errors) patch.error = ev.errors;
+    if (ev.errors) patch["error"] = ev.errors;
   }
   if (Object.keys(patch).length) {
-    const { error: e3 } = await supabaseAdmin.from("whatsapp_messages").update(patch).eq("id", msg.id);
+    const { error: e3 } = await supabaseAdmin.from("whatsapp_messages").update(patch as never).eq("id", msg.id);
     if (e3) throw e3;
   }
   const ids = (events ?? []).filter((e) => !e.applied).map((e) => e.id);
@@ -236,7 +237,7 @@ async function replyTo(msg: { id: string; from: string; text: string }) {
   const history: ModelMessage[] = (hist ?? [])
     .reverse()
     .map((h) => ({ role: h.direction === "in" ? "user" : "assistant", content: h.body as string }) as ModelMessage);
-  if (!history.length || history[history.length - 1].role !== "user") history.push({ role: "user", content: msg.text });
+  if (!history.length || history[history.length - 1]?.role !== "user") history.push({ role: "user", content: msg.text });
 
   let answer: string;
   try {
